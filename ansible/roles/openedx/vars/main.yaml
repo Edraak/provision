@@ -1,0 +1,31 @@
+---
+openedx__enabled: true
+openedx__conf_repo: "https://github.com/edx/configuration"
+openedx__version: "openedx/rc/aspen-2014-09-10"
+openedx__playbook: "vagrant-devstack.yml"
+
+# vagrant-devstack.yml include :
+#   edx_ansible
+#   edxlocal
+#   mongo
+#   edxapp
+#   oraclejdk
+#   elasticsearch
+#   forum
+
+# vagrant-fullstack.yml include :
+#   edx_ansible
+#   user
+#   nginx
+#   edxlocal
+#   mongo
+#   celery_worker
+#   edxapp
+#   demo
+#   rabbitmq
+#   oraclejdk
+#   elasticsearch
+#   forum
+#   xqueue
+#   ora
+#   certs

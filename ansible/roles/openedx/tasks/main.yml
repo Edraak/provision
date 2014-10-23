@@ -1,0 +1,37 @@
+---
+- name: Install system apt pre-requisites
+  apt: name={{ item }} state=installed
+  with_items:
+    - build-essential
+    - software-properties-common
+    - python-software-properties
+    - curl
+    - git-core
+    - libxml2-dev
+    - libxslt1-dev
+    - python-pip
+    - python-apt
+    - python-dev
+
+- name: Install system pip pre-requisites
+  pip: name={{ item }} state=latest
+  with_items:
+    - pip
+    - virtualenv
+
+- name: checkout edx configuration repo
+  git: >
+    dest="/var/tmp/configuration" repo="{{ openedx__conf_repo }}"
+    version="{{ openedx__version }}" accept_hostkey=yes
+  # sudo_user: "ubuntu"
+
+
+- name: Adding alias to /etc/hosts
+  lineinfile: dest=/etc/hosts line="127.0.0.1 openedx"
+
+- name: Install the ansible requirements
+  pip: requirements=/var/tmp/configuration/requirements.txt
+
+- name: Run the edx_sandbox.yml playbook
+  command: sudo ansible-playbook -c local /var/tmp/configuration/playbooks/{{ openedx__playbook }} -i "localhost,"
+
