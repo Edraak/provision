@@ -10,6 +10,6 @@
     - { role: kalite, when: kalite__enabled }
     - { role: wikipedia, when: wikipedia__enabled }
 
- Always run this one last, since it will build the ISO
+ #Always run this one last, since it will build the ISO
     - { role: build_iso, when: build_iso__enabled }
 
